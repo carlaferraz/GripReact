@@ -9,11 +9,8 @@
 }
 
 body{
-  background: url('src/assets/griphero.png') no-repeat;
-  background-size: cover;
-  background-position: top;
   min-height: 100vh;
-    font-family: "Montserrat", sans-serif;
+  font-family: "Montserrat", sans-serif;
 }
 
 img { display: block; max-width: 100%; }

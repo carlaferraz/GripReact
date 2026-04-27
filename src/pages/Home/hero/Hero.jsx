@@ -4,7 +4,7 @@ import { useState } from 'react'
 
 function Hero() {
     return (
-        <div class="container hero-box">
+        <div className="hero-fullscreen hero-box">
                 <div className="hero-txt">
                     <span className="eyebrow">★ Escola de Ballet de Excelência</span>
                     <h1>

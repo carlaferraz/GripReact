@@ -1,26 +1,26 @@
 import React from 'react'
 import './Navbar.css'
-import { useState } from 'react'
+import { Link } from 'react-router-dom'
 
 function Navbar() {
     return (
         <header className="header">
             <div>
-                <a href="/" className="logo">
+                <Link to="/" className="logo">
                 <img src="src/assets/grip-logo.svg" alt="grip logo" />
-                </a>
+                </Link>
             </div>
             <div>
             <nav className="navbar">
-                <a href="/">Home</a>
-                <a href="/">Aulas</a>
-                <a href="/">Professores</a>
-                <a href="/">Planos</a>
-                <a href="/">Sobre</a>
+                <Link to="/">Home</Link>
+                <Link to="/">Professores</Link>
+                <Link to="/">Planos</Link>
+                <Link to="/sobre">Sobre</Link>
+                <Link to="/contato">Contato</Link>
             </nav>
             </div>
-            <button className="btn">Entrar</button>
-            
+            <Link to="/cadastro" className="btn">Entrar</Link>
+
         </header>
     )
 }

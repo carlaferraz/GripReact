@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { cadastrarUsuario } from "../services/cadastroService";
+import { cadastrarUsuario } from "../../services/cadastroService";
 
 function FormCadastro() {
   const [formData, setFormData] = useState({

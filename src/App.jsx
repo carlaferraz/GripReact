@@ -1,17 +1,23 @@
-import Navbar from "./components/navbar/Navbar";
-import Hero from "./components/Home/hero/Hero";
-import Footer from "./components/footer/Footer";
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import Layout from './components/Layout'
+import Hero from './pages/Home/hero/Hero'
+import Contato from './pages/Contato/Contato'
+import Sobre from './pages/Sobre/Sobre'
+import FormCadastro from "./components/FormCadastro/FormCadastro";
 
-function App() {
-
-
+export default function App() {
   return (
-    <div>
-      <Navbar />
-      <Hero />
-      <Footer />
-    </div>
-  );
-}
+    <BrowserRouter>
+      <Routes>
 
-export default App
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Hero />} />
+          <Route path="sobre" element={<Sobre />} />
+          <Route path="contato" element={<Contato />} />
+          <Route path="cadastro" element={<FormCadastro />} />
+        </Route>
+
+      </Routes>
+    </BrowserRouter>
+  )
+}
