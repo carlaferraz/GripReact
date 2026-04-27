@@ -1,0 +1,43 @@
+.header {
+    display: flex;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 10px 10%;
+    align-items: center;
+    flex-shrink: 0;
+    align-self: stretch;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(255, 255, 255, 0.80);
+    
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    font-size: 32px;
+    font-weight: 700;
+}
+
+.navbar {
+    display: flex;
+    width: 295.07px;
+    height: 20px;
+    align-items: center;
+    gap: 32px;
+}
+
+.navbar a {
+    position: relative;
+    color: #0A0A0A;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+}
+
+.navbar a:hover{
+    color: #6142E5;
+    transition: all 0.3s ease;
+}

@@ -1,0 +1,80 @@
+footer {
+    background-color: #1a1830;
+    padding-top: 56px;
+}
+
+footer .rodape-in {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 48px;
+    padding-bottom: 48px;
+}
+
+footer .marca {
+    flex: 1;
+    min-width: 220px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+footer .marca img {
+    width: 110px;
+}
+
+/* Sobrescreve p { color: #4a4761 } do index.css */
+footer p {
+    font-size: 14px;
+    line-height: 1.7;
+    color: #b0adc8;
+    max-width: 280px;
+}
+
+footer .social {
+    display: flex;
+    gap: 12px;
+}
+
+footer .col {
+    min-width: 130px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* Sobrescreve h4 { color: #1a1830 } do index.css */
+footer h4 {
+    color: #ffffff;
+    font-size: 16px;
+}
+
+footer ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+footer ul a {
+    font-size: 14px;
+    color: #b0adc8;
+    transition: color 0.2s ease;
+}
+
+footer ul a:hover {
+    color: #6c47ff;
+}
+
+footer .rodape-base {
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 18px 24px;
+    display: flex;
+    justify-content: center;
+}
+
+/* Sobrescreve p { color } do index.css */
+footer .rodape-base p {
+    font-size: 13px;
+    color: #6e6b8a;
+    max-width: none;
+}
