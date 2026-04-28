@@ -2,32 +2,6 @@ import { Link } from 'react-router-dom'
 import './Planos.css'
 import Card from '../../components/Card/Card'
 
-const planos = [
-  {
-    title: 'Descoberta',
-    meta: 'R$ 79 / mês',
-    bullets: ['1 aula ao vivo por semana', 'Acesso a materiais gravados (biblioteca base)', 'Suporte por e-mail'],
-  },
-  {
-    title: 'Evolua',
-    meta: 'R$ 139 / mês',
-    bullets: [
-      '2 aulas ao vivo por semana',
-      'Biblioteca completa + sugestões por nível',
-      'Feedback rápido no fórum da turma',
-    ],
-  },
-  {
-    title: 'Palco',
-    meta: 'R$ 229 / mês',
-    bullets: [
-      'Aulas ilimitadas ao vivo',
-      'Variações e preparação para apresentações',
-      'Orientação pontual com professor titular',
-    ],
-  },
-]
-
 function Planos() {
   return (
     <section className="page-lista planos-page" id="planos">
@@ -42,20 +16,44 @@ function Planos() {
         </header>
 
         <div className="page-lista-grid">
-          {planos.map((pl) => (
-            <Card key={pl.title} variant="plano" eyebrow="Plano" title={pl.title} meta={pl.meta}>
-              <ul className="card-list">
-                {pl.bullets.map((b) => (
-                  <li key={b}>{b}</li>
-                ))}
-              </ul>
-              <div className="card-footer">
-                <Link className="btn" to="/cadastro">
-                  Quero este plano
-                </Link>
-              </div>
-            </Card>
-          ))}
+          <Card variant="plano" eyebrow="Plano" title="Descoberta" meta="R$ 79 / mês">
+            <ul className="card-list">
+              <li>1 aula ao vivo por semana</li>
+              <li>Acesso a materiais gravados (biblioteca base)</li>
+              <li>Suporte por e-mail</li>
+            </ul>
+            <div className="card-footer">
+              <Link className="btn" to="/cadastro">
+                Quero este plano
+              </Link>
+            </div>
+          </Card>
+
+          <Card variant="plano" eyebrow="Plano" title="Evolua" meta="R$ 139 / mês">
+            <ul className="card-list">
+              <li>2 aulas ao vivo por semana</li>
+              <li>Biblioteca completa + sugestões por nível</li>
+              <li>Feedback rápido no fórum da turma</li>
+            </ul>
+            <div className="card-footer">
+              <Link className="btn" to="/cadastro">
+                Quero este plano
+              </Link>
+            </div>
+          </Card>
+
+          <Card variant="plano" eyebrow="Plano" title="Palco" meta="R$ 229 / mês">
+            <ul className="card-list">
+              <li>Aulas ilimitadas ao vivo</li>
+              <li>Variações e preparação para apresentações</li>
+              <li>Orientação pontual com professor titular</li>
+            </ul>
+            <div className="card-footer">
+              <Link className="btn" to="/cadastro">
+                Quero este plano
+              </Link>
+            </div>
+          </Card>
         </div>
       </div>
     </section>

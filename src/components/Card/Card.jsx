@@ -1,10 +1,9 @@
 import './Card.css'
 
 function Card({ variant = 'professor', eyebrow, title, subtitle, description, meta, children }) {
-  const rootClass =
-    variant === 'plano'
-      ? 'card-surface card-surface--plano'
-      : 'card-surface'
+  const rootClass = ['card-surface', variant === 'plano' && 'card-surface--plano']
+    .filter(Boolean)
+    .join(' ')
 
   return (
     <article className={rootClass}>

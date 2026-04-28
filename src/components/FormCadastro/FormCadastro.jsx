@@ -148,11 +148,6 @@ function FormCadastro() {
             {carregando ? "Salvando..." : "Cadastrar"}
           </button>
         </form>
-
-        <div className="form-cadastro-preview">
-          <h3>Estado do formulário</h3>
-          <pre>{JSON.stringify(formData, null, 2)}</pre>
-        </div>
       </div>
     </section>
   );
