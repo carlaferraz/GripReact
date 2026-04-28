@@ -1,42 +1,27 @@
-# React + Vite
+# GripReact
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+SPA em React + Vite com React Router — TDE (escola Grip, ballet clássico).
 
-Currently, two official plugins are available:
+## Rodar
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+```bash
+npm install
+npm run dev
+```
 
-Objetivo do TDE:
-Construir a base estrutural de uma SPA (Single Page Application), aplicando rotas elayout reutilizável.
+`npm run build` — produção em `dist/` · `npm run preview` — testar o build · `npm run lint`
 
-Contexto:
-Sua equipe está desenvolvendo um MVP de um projeto no decorrer da disciplina.
-Agora, vocês precisam estruturar a navegação antes das funcionalidades
+## Estrutura
 
-Atividade:
+| Caminho | Função |
+|---------|--------|
+| `src/App.jsx` | Rotas: `/`, `/sobre`, `/professores`, `/planos`, `/contato`, `/cadastro` |
+| `src/components/Layout.jsx` | Navbar, `<main>` + `Outlet`, Footer |
+| `src/components/Card/` | Card usado em Professores e Planos |
+| `src/components/FormCadastro/` | Cadastro + `src/services/cadastroService.js` |
 
-Vocês precisam implementar:
-- React Router OK (CARLA)
+Base: [Vite](https://vitejs.dev/), [React Router](https://reactrouter.com/).
 
-Layout principal com:
-- Header, OK (CARLA)
-- Menu lateral ou navbar, OK (CARLA)
-- Área de conteúdo. (DAL PRA) TERMINAR
+## Entrega
 
-Mínimo de 4 páginas:
-- Home, OK (CARLA)
-- Sobre, (DAL PRA) TERMINAR
-- Lista, A FAZER (LISTA = PAGINA PROFESSORES E PAGINA PLANOS)
-- Contato. TERMINAR (CARLA)
-- Cadastro. (DAL PRA) => TERMINAR CSS, VALIDACAO JA ESTA OK
-
-Componentização obrigatória:
-- Navbar, OK (CARLA)
-- Footer, OK (CARLA)
-- Card ou Item. (DAL PRA) A FAZER => CARD COMPONENTE PARA PROFESSORES E PARA PLANOS
-
-Entregáveis:
-- Repositório atualizado;
-- Vídeo demonstrando navegação;
-- README explicando a arquitetura.
+Repositório atualizado, vídeo da navegação entre as rotas, README com arquitetura acima.

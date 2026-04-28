@@ -22,10 +22,10 @@
 
 .navbar {
     display: flex;
-    width: 295.07px;
-    height: 20px;
     align-items: center;
-    gap: 32px;
+    gap: 24px;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .navbar a {

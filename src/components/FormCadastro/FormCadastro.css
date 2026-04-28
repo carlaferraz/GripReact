@@ -1,0 +1,135 @@
+.pagina-cadastro {
+  min-height: 100vh;
+  width: 100%;
+  padding: 96px 24px 88px;
+  background: url('/src/assets/griphero.png') no-repeat center / cover fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pagina-cadastro-inner {
+  width: 100%;
+  max-width: 520px;
+  background: #fff;
+  border: 1px solid rgba(108, 71, 255, 0.12);
+  border-radius: 16px;
+  padding: 40px;
+  box-shadow: 0 8px 32px rgba(108, 71, 255, 0.1);
+  text-align: left;
+}
+
+.pagina-cadastro-inner h2 {
+  font-size: 1.65rem;
+  margin-bottom: 8px;
+}
+
+.pagina-cadastro-lead {
+  font-size: 0.95rem;
+  margin-bottom: 24px;
+}
+
+.form-cadastro-erro {
+  font-size: 0.9rem;
+  color: #c62828;
+  margin-bottom: 16px;
+}
+
+.form-cadastro {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.form-cadastro .form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-cadastro label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #1a1830;
+}
+
+.form-cadastro input,
+.form-cadastro select {
+  padding: 12px 16px;
+  border: 1px solid rgba(108, 71, 255, 0.2);
+  border-radius: 10px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.95rem;
+  color: #1a1830;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.form-cadastro input:focus,
+.form-cadastro select:focus {
+  border-color: #6c47ff;
+}
+
+.form-cadastro-checkbox {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.form-cadastro-checkbox input {
+  margin-top: 4px;
+}
+
+.form-cadastro .btn {
+  margin-top: 4px;
+}
+
+.form-cadastro-preview {
+  margin-top: 28px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(108, 71, 255, 0.12);
+}
+
+.form-cadastro-preview h3 {
+  font-size: 0.95rem;
+  margin-bottom: 10px;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.form-cadastro-preview pre {
+  font-size: 0.75rem;
+  line-height: 1.5;
+  overflow: auto;
+  background: rgba(108, 71, 255, 0.06);
+  padding: 14px;
+  border-radius: 10px;
+}
+
+.sucesso-cadastro {
+  min-height: 100vh;
+  width: 100%;
+  padding: 96px 24px;
+  background: url('/src/assets/griphero.png') no-repeat center / cover fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sucesso-cadastro-inner {
+  max-width: 480px;
+  background: #fff;
+  border: 1px solid rgba(108, 71, 255, 0.12);
+  border-radius: 16px;
+  padding: 40px;
+  text-align: center;
+  box-shadow: 0 8px 32px rgba(108, 71, 255, 0.1);
+}
+
+.sucesso-cadastro-inner h2 {
+  margin-bottom: 12px;
+}
+
+.sucesso-cadastro-inner p {
+  margin-bottom: 24px;
+  line-height: 1.65;
+}
