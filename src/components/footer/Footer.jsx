@@ -1,6 +1,6 @@
-import React from 'react'
 import './Footer.css'
 import { Link } from 'react-router-dom'
+import gripLogo from '../../assets/grip-logo.svg'
 
 function Footer() {
     return (
@@ -8,7 +8,7 @@ function Footer() {
             <div className="rodape-in">
 
                 <div className="marca">
-                    <img src="src/assets/grip-logo.svg" alt="logo grip" />
+                    <img src={gripLogo} alt="Grip" />
                     <p>Ballet clássico ensinado com paixão e tradição.</p>
                     <div className="social">
                         <a href="#" aria-label="Instagram">
@@ -29,11 +29,11 @@ function Footer() {
                 <div className="col">
                     <h4>Links Úteis</h4>
                     <ul>
-                         <Link to="/">Home</Link>
-                        <Link to="/">Professores</Link>
-                        <Link to="/">Planos</Link>
-                        <Link to="/sobre">Sobre</Link>
-                        <Link to="/contato">Contato</Link>
+                        <li><Link to="/">Home</Link></li>
+                        <li><Link to="/professores">Professores</Link></li>
+                        <li><Link to="/planos">Planos</Link></li>
+                        <li><Link to="/sobre">Sobre</Link></li>
+                        <li><Link to="/contato">Contato</Link></li>
                     </ul>
                 </div>
 

@@ -35,4 +35,10 @@ export default [
       ],
     },
   },
+  {
+    files: ['src/components/Card/Card.jsx'],
+    rules: {
+      'react/prop-types': 'off',
+    },
+  },
 ]

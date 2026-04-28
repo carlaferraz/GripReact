@@ -1,6 +1,5 @@
-import React from 'react'
 import './Hero.css'
-import { useState } from 'react'
+import { Link } from 'react-router-dom'
 
 function Hero() {
     return (
@@ -17,7 +16,7 @@ function Hero() {
                         abrangentes para todos os níveis de habilidade.
                     </p>
                     <div className="hero-btns">
-                        <a href="#planos" className="btn">Começar a Aprender Ballet</a>
+                        <Link to="/planos" className="btn">Começar a Aprender Ballet</Link>
                     </div>
                     <div className="stats">
                         <div className="stat">
