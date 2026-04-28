@@ -20,7 +20,6 @@ function Navbar() {
             </nav>
             </div>
             <Link to="/cadastro" className="btn">Entrar</Link>
-
         </header>
     )
 }
