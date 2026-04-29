@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import './App.css'
 import Layout from './components/Layout'
-import Hero from './pages/Home/hero/Hero'
+import Home from './pages/Home/Home'
 import Contato from './pages/Contato/Contato'
 import Sobre from './pages/Sobre/Sobre'
 import Professores from './pages/Professores/Professores'
@@ -14,7 +14,7 @@ export default function App() {
       <Routes>
 
         <Route path="/" element={<Layout />}>
-          <Route index element={<Hero />} />
+          <Route index element={<Home />} />
           <Route path="sobre" element={<Sobre />} />
           <Route path="professores" element={<Professores />} />
           <Route path="planos" element={<Planos />} />
