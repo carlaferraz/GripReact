@@ -1,28 +1,15 @@
-/**
- * Regex e mensagens centralizadas — usadas pelos formulários via serviços.
- */
-
-/** E-mail: local válido @ domínio com TLD (sem espaços no local) */
 export const RE_EMAIL =
   /^[a-z0-9]+(?:[._%+][a-z0-9]+)*@[a-z0-9](?:[a-z0-9-]*[a-z0-9])?(?:\.[a-z]{2,})+$/i;
 
-/**
- * Nome completo: pelo menos duas sequências só de letras (acentos ok),
- * separadas por espaço ou hifen/apóstrofo entre sílabas; também aceita particles "da Silva".
- */
 export const RE_NOME_COMPLETO =
   /^[\p{L}]+(?:[\s'-][\p{L}]+)+$/u;
 
-/** Assunto: após trim, mínimo 4 caracteres (qualquer conteúdo) */
 export const RE_TEXTO_CURTO_MIN4 = /^[\s\S]{4,}$/;
 
-/** Mensagem: após trim, mínimo 15 caracteres */
 export const RE_TEXTO_LONGO_MIN15 = /^[\s\S]{15,}$/;
 
-/** Idade 1–120 como string numérica inteira sem zeros à esquerda inválidos (aceita "045" como erro) */
 export const RE_IDADE = /^(?:[1-9]|[1-9][0-9]|1[01][0-9]|120)$/;
 
-/** Gênero igual às options do cadastro */
 export const RE_GENERO =
   /^(?:masculino|feminino|outro|nao-informar)$/;
 
