@@ -92,3 +92,20 @@
 .contato-form .btn {
     width: 100%;
 }
+
+.contato-form .btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.contato-form-erro {
+    font-size: 0.9rem;
+    color: #c62828;
+    margin: 0;
+}
+
+.contato-form-sucesso {
+    font-size: 0.9rem;
+    color: #2e7d32;
+    margin: 0;
+}

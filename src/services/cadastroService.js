@@ -1,3 +1,11 @@
+import {
+  validarNomeCompletoOuErro,
+  validarEmailOuErro,
+  validarIdadeObrigatoriaOuErro,
+  validarGeneroOuErro,
+  validarAceiteTermosOuErro,
+} from "../utils/validacaoFormulario";
+
 async function cadastrarUsuario(dados) {
   validarDados(dados);
 
@@ -11,17 +19,13 @@ async function cadastrarUsuario(dados) {
 }
 
 function validarDados(dados) {
-  const erros = [];
-
-  if (!dados.nome?.trim()) erros.push("Nome é obrigatório");
-
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(dados.email))
-    erros.push("E-mail inválido");
-
-  if (dados.idade && (dados.idade < 1 || dados.idade > 120))
-    erros.push("Idade fora do intervalo válido");
-
-  if (!dados.aceiteTermos) erros.push("Você deve aceitar os termos de uso");
+  const erros = [
+    validarNomeCompletoOuErro(dados.nome),
+    validarEmailOuErro(dados.email),
+    validarIdadeObrigatoriaOuErro(dados.idade),
+    validarGeneroOuErro(dados.genero),
+    validarAceiteTermosOuErro(dados.aceiteTermos),
+  ].filter(Boolean);
 
   if (erros.length > 0) throw new Error(erros.join(", "));
 }
