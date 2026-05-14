@@ -7,6 +7,9 @@ import Sobre from './pages/Sobre/Sobre'
 import Professores from './pages/Professores/Professores'
 import Planos from './pages/Planos/Planos'
 import FormCadastro from "./components/FormCadastro/FormCadastro";
+import Login from "./pages/Login/Login";
+import PrivateRoute from "./components/PrivateRoute";
+
 
 export default function App() {
   return (
@@ -20,6 +23,9 @@ export default function App() {
           <Route path="planos" element={<Planos />} />
           <Route path="contato" element={<Contato />} />
           <Route path="cadastro" element={<FormCadastro />} />
+          <Route path="login" element={<Login />} />
+          <Route path="usuarios" element={<PrivateRoute><UsuariosPage/></PrivateRoute>}
+          />
         </Route>
 
       </Routes>

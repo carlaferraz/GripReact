@@ -148,6 +148,8 @@ function FormCadastro() {
             {carregando ? "Salvando..." : "Cadastrar"}
           </button>
         </form>
+        <p>ainda nao tem cadastro?</p>
+        <Link to="/login" className="btn">Entrar</Link>
       </div>
     </section>
   );
