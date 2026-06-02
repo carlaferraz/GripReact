@@ -20,6 +20,7 @@ function Navbar() {
             </nav>
             </div>
             <Link to="/cadastro" className="btn">Entrar</Link>
+            <Link to="/usuarios" className="btn">Usuários</Link>
 
         </header>
     )

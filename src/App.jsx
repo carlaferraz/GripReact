@@ -9,6 +9,7 @@ import Planos from './pages/Planos/Planos'
 import FormCadastro from "./components/FormCadastro/FormCadastro";
 import Login from "./pages/Login/Login";
 import PrivateRoute from "./components/PrivateRoute";
+import UsuariosPage from "./pages/Usuarios/UsuariosPage";
 
 
 export default function App() {
