@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { cadastrarUsuario } from "../../services/cadastroService";
 import "./FormCadastro.css";
 
@@ -6,6 +7,8 @@ function FormCadastro() {
   const [formData, setFormData] = useState({
     nome: "",
     email: "",
+    senha: "",
+    confirmarSenha: "",
     idade: "",
     genero: "",
     aceiteTermos: false,
@@ -43,6 +46,8 @@ function FormCadastro() {
     setFormData({
       nome: "",
       email: "",
+      senha: "",
+      confirmarSenha: "",
       idade: "",
       genero: "",
       aceiteTermos: false,
@@ -61,6 +66,10 @@ function FormCadastro() {
           <p>
             Olá, {formData.nome}! Seu e-mail {formData.email} foi registrado.
           </p>
+          <p>Use esse e-mail e a senha que você definiu para entrar.</p>
+          <Link to="/login" className="btn">
+            Ir para o login
+          </Link>
           <button type="button" className="btn" onClick={handleReset}>
             Novo cadastro
           </button>
@@ -101,6 +110,32 @@ function FormCadastro() {
               value={formData.email}
               onChange={handleChange}
               placeholder="seu@email.com"
+            />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="senha">Senha</label>
+            <input
+              type="password"
+              id="senha"
+              name="senha"
+              value={formData.senha}
+              onChange={handleChange}
+              placeholder="Mínimo 6 caracteres"
+              autoComplete="new-password"
+            />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="confirmarSenha">Confirmar senha</label>
+            <input
+              type="password"
+              id="confirmarSenha"
+              name="confirmarSenha"
+              value={formData.confirmarSenha}
+              onChange={handleChange}
+              placeholder="Repita a senha"
+              autoComplete="new-password"
             />
           </div>
 
@@ -148,8 +183,10 @@ function FormCadastro() {
             {carregando ? "Salvando..." : "Cadastrar"}
           </button>
         </form>
-        <p>ainda nao tem cadastro?</p>
-        <Link to="/login" className="btn">Entrar</Link>
+        <p className="pagina-cadastro-lead">Já tem conta?</p>
+        <Link to="/login" className="btn">
+          Fazer login
+        </Link>
       </div>
     </section>
   );

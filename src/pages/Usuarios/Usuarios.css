@@ -1,0 +1,41 @@
+.pagina-usuarios {
+  min-height: 100vh;
+  padding: 96px 24px 88px;
+}
+
+.pagina-usuarios-inner {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.pagina-usuarios-inner h2 {
+  margin-bottom: 8px;
+}
+
+.pagina-usuarios-lead {
+  margin-bottom: 24px;
+  font-size: 0.95rem;
+}
+
+.usuarios-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.usuario-card {
+  border: 1px solid rgba(108, 71, 255, 0.15);
+  border-radius: 12px;
+  padding: 16px 20px;
+  background: #fff;
+}
+
+.usuario-card h3 {
+  font-size: 1.1rem;
+  margin-bottom: 8px;
+}
+
+.usuario-card p {
+  font-size: 0.9rem;
+  margin-bottom: 4px;
+}

@@ -70,3 +70,17 @@ export function validarAceiteTermosOuErro(aceite) {
   if (!aceite) return "Você deve aceitar os termos de uso";
   return null;
 }
+
+export function validarSenhaOuErro(senha) {
+  const s = (senha ?? "").toString();
+  if (!s) return "Senha é obrigatória";
+  if (s.length < 6) return "Senha deve ter pelo menos 6 caracteres";
+  return null;
+}
+
+export function validarConfirmarSenhaOuErro(senha, confirmarSenha) {
+  const erroSenha = validarSenhaOuErro(senha);
+  if (erroSenha) return erroSenha;
+  if (senha !== confirmarSenha) return "As senhas não coincidem";
+  return null;
+}
