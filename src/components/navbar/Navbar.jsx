@@ -7,10 +7,15 @@ function Navbar() {
   const navigate = useNavigate();
   const location = useLocation();
   const [logado, setLogado] = useState(false);
+  const [menuAberto, setMenuAberto] = useState(false);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
     setLogado(Boolean(token && token !== "undefined"));
+  }, [location]);
+
+  useEffect(() => {
+    setMenuAberto(false);
   }, [location]);
 
   function handleLogout() {
@@ -27,7 +32,7 @@ function Navbar() {
         </Link>
       </div>
       <div>
-        <nav className="navbar">
+        <nav className={`navbar${menuAberto ? " aberto" : ""}`}>
           <Link to="/">Home</Link>
           <Link to="/professores">Professores</Link>
           <Link to="/planos">Planos</Link>
@@ -54,6 +59,16 @@ function Navbar() {
             Login
           </Link>
         )}
+        <button
+          type="button"
+          className="nav-toggle"
+          onClick={() => setMenuAberto((prev) => !prev)}
+          aria-label="Abrir menu"
+        >
+          <span />
+          <span />
+          <span />
+        </button>
       </div>
     </header>
   );

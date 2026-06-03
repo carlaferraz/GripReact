@@ -28,7 +28,7 @@ export default function UsuariosPage() {
       <div className="pagina-usuarios-inner">
         <h2>Usuários (API)</h2>
         <p className="pagina-usuarios-lead">
-          Lista consumida de jsonplaceholder — rota protegida no front com JWT.
+          Lista consumida da API de jsonplaceholder: rota protegida no front com JWT.
         </p>
 
         {loading ? (

@@ -41,8 +41,7 @@ export default function Login() {
       <div className="pagina-login-inner">
         <h2>Login</h2>
         <p className="pagina-login-lead">
-          Use o e-mail e a senha do seu cadastro. Admin de teste: admin@email.com
-          / 123456
+          Faça login para acessar sua conta.
         </p>
 
         <div className="form-login">

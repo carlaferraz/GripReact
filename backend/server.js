@@ -187,6 +187,25 @@ app.use((err, req, res, next) => {
   res.status(500).json({ erro: "Erro interno." });
 });
 
+app.post("/contato", async (req, res) => {
+  const { nome, email, assunto, mensagem } = req.body;
+
+  if (!nome || !email || !assunto || !mensagem) {
+    return res.status(400).json({ erro: "Todos os campos são obrigatórios." });
+  }
+
+  try {
+    await pool.query(
+      "INSERT INTO contatos (nome, email, assunto, mensagem) VALUES (?, ?, ?, ?)",
+      [nome.trim(), email.trim(), assunto.trim(), mensagem.trim()]
+    );
+    res.status(201).json({ sucesso: true });
+  } catch (erro) {
+    console.error(erro);
+    res.status(503).json({ erro: "Erro ao salvar mensagem." });
+  }
+});
+
 app.listen(3001, () => {
   console.log("Servidor rodando na porta 3001");
 });
