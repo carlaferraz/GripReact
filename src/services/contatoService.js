@@ -6,12 +6,22 @@ import {
 } from "../utils/validacaoFormulario";
 
 async function enviarMensagemContato(dados) {
-  validar(dados);
+    validar(dados);                            
+                   
+    const resposta = await fetch("http://localhost:3001/contato", {             
+      method: "POST",                                              
+      headers: { "Content-Type": "application/json" },                          
+      body: JSON.stringify(dados),                    
+    });                           
+                                                                                
+    const resultado = await resposta.json().catch(() => ({}));
+                                                                                
+    if (!resposta.ok) {
+      throw new Error(resultado.erro || "Erro ao enviar mensagem.");
+    }                                                               
 
-  await new Promise((res) => setTimeout(res, 600));
-
-  return { sucesso: true };
-}
+    return { sucesso: true };                                                   
+  }
 
 function validar(dados) {
   const erros = [
