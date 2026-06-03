@@ -39,10 +39,7 @@ function Navbar() {
           <Link to="/sobre">Sobre</Link>
           <Link to="/contato">Contato</Link>
           {logado ? (
-            <>
-              <Link to="/usuarios">Usuários</Link>
-              <Link to="/upload">Upload</Link>
-            </>
+            <Link to="/upload">Upload</Link>
           ) : null}
         </nav>
       </div>
