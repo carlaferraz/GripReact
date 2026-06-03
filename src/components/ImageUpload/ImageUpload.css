@@ -1,0 +1,150 @@
+.upload-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 2rem;
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+.upload-title {
+  font-size: 1.65rem;
+  margin: 0;
+  color: #1a1830;
+}
+
+.drop-zone {
+  width: 100%;
+  min-height: 220px;
+  border: 2px dashed rgba(108, 71, 255, 0.35);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: border-color 0.2s, background-color 0.2s;
+  background-color: #faf9ff;
+  position: relative;
+  overflow: hidden;
+}
+
+.drop-zone:hover,
+.drop-zone:focus-visible {
+  border-color: #6c47ff;
+  background-color: #f3f0ff;
+  outline: none;
+}
+
+.drop-zone--active {
+  border-color: #6c47ff;
+  background-color: #eeedfe;
+}
+
+.drop-zone--filled {
+  cursor: default;
+  border-style: solid;
+  border-color: #6c47ff;
+}
+
+.drop-zone__input {
+  display: none;
+}
+
+.drop-zone__placeholder {
+  text-align: center;
+  padding: 1.5rem;
+  pointer-events: none;
+}
+
+.drop-zone__icon {
+  font-size: 3rem;
+  display: block;
+  margin-bottom: 0.75rem;
+}
+
+.drop-zone__text {
+  color: #4a4761;
+  font-size: 0.95rem;
+  margin: 0 0 0.4rem;
+}
+
+.drop-zone__hint {
+  color: #888;
+  font-size: 0.8rem;
+  margin: 0;
+}
+
+.drop-zone__preview {
+  width: 100%;
+  height: 100%;
+  min-height: 220px;
+  object-fit: cover;
+  border-radius: 10px;
+  display: block;
+}
+
+.upload-error {
+  color: #c62828;
+  background: #fff5f5;
+  border: 1px solid #feb2b2;
+  border-radius: 8px;
+  padding: 0.6rem 1rem;
+  font-size: 0.875rem;
+  width: 100%;
+  margin: 0;
+}
+
+.upload-success {
+  color: #276749;
+  background: #f0fff4;
+  border: 1px solid #9ae6b4;
+  border-radius: 8px;
+  padding: 0.6rem 1rem;
+  font-size: 0.875rem;
+  width: 100%;
+  margin: 0;
+  word-break: break-all;
+}
+
+.upload-success a {
+  color: #2f855a;
+  font-weight: 600;
+}
+
+.upload-actions {
+  display: flex;
+  gap: 0.75rem;
+  width: 100%;
+}
+
+.upload-btn-primary {
+  flex: 1;
+  background: #6c47ff;
+  color: #fff;
+  border-radius: 100px;
+  padding: 12px 24px;
+  box-shadow: 0 8px 20px rgba(108, 71, 255, 0.25);
+}
+
+.upload-btn-primary:hover:not(:disabled) {
+  background: #5b36e0;
+}
+
+.upload-btn-primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.upload-btn-secondary {
+  flex: 1;
+  background: #e2e8f0;
+  color: #2d3748;
+  border-radius: 100px;
+  padding: 12px 24px;
+  box-shadow: none;
+}
+
+.upload-btn-secondary:hover {
+  background: #cbd5e0;
+}

@@ -10,6 +10,7 @@ import FormCadastro from "./components/FormCadastro/FormCadastro";
 import Login from "./pages/Login/Login";
 import PrivateRoute from "./components/PrivateRoute";
 import UsuariosPage from "./pages/Usuarios/UsuariosPage";
+import UploadPage from "./pages/Upload/UploadPage";
 
 
 export default function App() {
@@ -25,7 +26,21 @@ export default function App() {
           <Route path="contato" element={<Contato />} />
           <Route path="cadastro" element={<FormCadastro />} />
           <Route path="login" element={<Login />} />
-          <Route path="usuarios" element={<PrivateRoute><UsuariosPage/></PrivateRoute>}
+          <Route
+            path="usuarios"
+            element={
+              <PrivateRoute>
+                <UsuariosPage />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="upload"
+            element={
+              <PrivateRoute>
+                <UploadPage />
+              </PrivateRoute>
+            }
           />
         </Route>
 

@@ -1,0 +1,67 @@
+.pagina-login {
+  min-height: 100vh;
+  width: 100%;
+  padding: 96px 24px 88px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pagina-login-inner {
+  width: 100%;
+  max-width: 420px;
+  background: #fff;
+  border: 1px solid rgba(108, 71, 255, 0.12);
+  border-radius: 16px;
+  padding: 40px;
+  box-shadow: 0 8px 32px rgba(108, 71, 255, 0.1);
+  text-align: left;
+}
+
+.pagina-login-inner h2 {
+  font-size: 1.65rem;
+  margin-bottom: 8px;
+}
+
+.pagina-login-lead {
+  font-size: 0.9rem;
+  margin-bottom: 24px;
+}
+
+.form-login {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.form-login .form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-login label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #1a1830;
+}
+
+.form-login input {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid rgba(108, 71, 255, 0.2);
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-family: inherit;
+}
+
+.form-login input:focus {
+  outline: none;
+  border-color: #6c47ff;
+  box-shadow: 0 0 0 3px rgba(108, 71, 255, 0.15);
+}
+
+.form-login .btn {
+  width: 100%;
+  margin-top: 8px;
+}

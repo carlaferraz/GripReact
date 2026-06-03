@@ -1,6 +1,6 @@
 import { useState } from "react";
-
 import { useNavigate } from "react-router-dom";
+import "./Login.css";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -9,7 +9,8 @@ export default function Login() {
 
   async function fazerLogin() {
     try {
-      const resposta = await fetch("http://localhost:5173/", {
+      const resposta = await fetch("http://localhost:3001/login", {
+        method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
@@ -20,7 +21,6 @@ export default function Login() {
       });
 
       const dados = await resposta.json();
-      console.log(dados);
 
       if (!resposta.ok) {
         alert(dados.erro);
@@ -32,24 +32,47 @@ export default function Login() {
       navigate("/usuarios");
     } catch (erro) {
       console.log(erro);
+      alert("Erro ao conectar com o servidor. Verifique se o backend está rodando.");
     }
   }
+
   return (
-    <div>
-      <h1>Login</h1>
-      <input
-        type="email"
-        placeholder="Email"
-        onChange={(e) => setEmail(e.target.value)}
-      />
+    <section className="pagina-login">
+      <div className="pagina-login-inner">
+        <h2>Login</h2>
+        <p className="pagina-login-lead">
+          Use o e-mail e a senha do seu cadastro. Admin de teste: admin@email.com
+          / 123456
+        </p>
 
-      <input
-        type="password"
-        placeholder="Senha"
-        onChange={(e) => setSenha(e.target.value)}
-      />
+        <div className="form-login">
+          <div className="form-group">
+            <label htmlFor="login-email">E-mail</label>
+            <input
+              id="login-email"
+              type="email"
+              placeholder="seu@email.com"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </div>
 
-      <button onClick={fazerLogin}>Entrar</button>
-    </div>
+          <div className="form-group">
+            <label htmlFor="login-senha">Senha</label>
+            <input
+              id="login-senha"
+              type="password"
+              placeholder="Senha"
+              value={senha}
+              onChange={(e) => setSenha(e.target.value)}
+            />
+          </div>
+
+          <button type="button" className="btn" onClick={fazerLogin}>
+            Entrar
+          </button>
+        </div>
+      </div>
+    </section>
   );
 }
