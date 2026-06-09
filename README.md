@@ -45,7 +45,7 @@ RA3: segunda API externa, foto de perfil no MySQL, contato no banco, JWT simples
 
 Públicas: `/`, `/sobre`, `/professores`, `/planos`, `/contato`, `/cadastro`, `/login`
 
-Só logado (`PrivateRoute`): `/comunicados`, `/usuarios`, `/upload`
+Só logado (`PrivateRoute`): `/comunicados`, `/aulas`, `/usuarios`, `/upload`
 
 # Páginas
 
