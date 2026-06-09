@@ -16,9 +16,15 @@ npm run seed
 npm start
 ```
 
-O seed só cria um admin pra testar: `admin@email.com` / `123456`. Quem se cadastra no site usa o próprio e-mail e senha.
+Se o banco já existia do RA2:
 
-No front (outro terminal, na raiz do repo):
+```bash
+npm run db:migrate
+```
+
+O seed cria usuário de teste: `admin@email.com` / `123456`. Quem se cadastra usa o próprio e-mail e senha.
+
+No front (outro terminal, na raiz):
 
 ```bash
 npm install
@@ -27,52 +33,54 @@ npm run dev
 
 Backend: `http://localhost:3001` — Front: `http://localhost:5173`
 
-`npm run build`, `npm run preview`, `npm run lint` na raiz. Mais detalhe da API em `backend/README.md`.
+Mais detalhe da API em `backend/README.md`.
 
 # Arquitetura
 
-O navegador carrega `index.html`, o React sobe em `src/main.jsx` e o `src/App.jsx` define as rotas. Tudo que é página pública ou logada passa pelo `Layout` (navbar + footer).
+O React sobe em `src/main.jsx`, rotas em `src/App.jsx`, layout com navbar e footer. Lógica de rede nos `services`.
 
-No RA2 entrou backend em Node (`backend/`), login com JWT, upload de imagem e cadastro salvando no MySQL. A lógica de rede fica nos `services`, não dentro do JSX dos formulários.
+RA3: segunda API externa, foto de perfil no MySQL, contato no banco, JWT simples (padrão da aula).
 
-# Rotas (`src/App.jsx`)
+# Rotas
 
-`BrowserRouter` + `Routes`. Rotas com login: `/usuarios` e `/upload` (usam `PrivateRoute` e token no `localStorage`).
+Públicas: `/`, `/sobre`, `/professores`, `/planos`, `/contato`, `/cadastro`, `/login`
 
-`/`, `/sobre`, `/professores`, `/planos`, `/contato`, `/cadastro`, `/login`, `/usuarios`, `/upload`
+Só logado (`PrivateRoute`): `/comunicados`, `/usuarios`, `/upload`
 
-# Páginas (`src/pages/`)
+# Páginas
 
 | Pasta | Rota | Conteúdo |
 |--------|------|----------|
-| `Home/hero/` | `/` | Hero / landing |
-| `Sobre/` | `/sobre` | Texto institucional |
-| `Professores/` | `/professores` | Grade com `Card` |
-| `Planos/` | `/planos` | Planos com `Card` |
-| `Contato/` | `/contato` | Formulário de contato |
-| `Login/` | `/login` | Login no backend |
-| `Usuarios/` | `/usuarios` | Lista da jsonplaceholder (rota protegida) |
-| `Upload/` | `/upload` | Upload de imagem (rota protegida) |
+| `Home/` | `/` | Landing |
+| `Sobre/` | `/sobre` | Institucional |
+| `Professores/` | `/professores` | Equipe |
+| `Planos/` | `/planos` | Planos |
+| `Contato/` | `/contato` | Form → MySQL |
+| `Login/` | `/login` | JWT |
+| `Comunicados/` | `/comunicados` | API posts (jsonplaceholder) |
+| `Usuarios/` | `/usuarios` | Rede Grip — API users |
+| `Upload/` | `/upload` | Foto de perfil + JWT |
 
-Cadastro fica em `src/components/FormCadastro/` na rota `/cadastro`.
+Cadastro: `FormCadastro` em `/cadastro`.
 
-# Layout (`src/components/Layout.jsx`)
+# Services
 
-Navbar, conteúdo da rota (`Outlet`) e Footer.
+- `cadastroService` — POST `/cadastros`
+- `contatoService` — POST `/contatos`
+- `comunicadosService` — jsonplaceholder `/posts`
+- `usuariosService` — jsonplaceholder `/users`
+- `authService` — login, logout, `localStorage` token
+- `perfilService` — GET `/perfil`
+- `uploadService` — POST `/upload` com Bearer
 
-# Componentes (`src/components/`)
+# Vídeo / apresentação (10 e 17/06)
 
-- **Navbar / Footer** — navegação; logout tira o token e manda pro login
-- **Card** — Professores e Planos
-- **FormCadastro** — cadastro com senha; chama `cadastroService`
-- **PrivateRoute** — sem token redireciona pro `/login`
-- **ImageUpload** — tela de upload (hook + service)
-
-# Services (`src/services/`)
-
-- `cadastroService.js` — valida e manda POST `/cadastros`
-- `contatoService.js` — valida e simula envio (ainda sem API real)
-- `uploadService.js` — POST `/upload` com `Authorization: Bearer`
+1. Cadastro com senha
+2. Login
+3. Comunicados e Rede Grip (APIs externas)
+4. Upload da foto de perfil (persiste no MySQL)
+5. Contato (salva no banco)
+6. Sair
 
 # Entrega
 

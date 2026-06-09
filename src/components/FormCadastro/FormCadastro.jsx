@@ -183,10 +183,7 @@ function FormCadastro() {
             {carregando ? "Salvando..." : "Cadastrar"}
           </button>
         </form>
-        <p className="pagina-cadastro-lead">Já tem conta?</p>
-        <Link to="/login" className="btn">
-          Fazer login
-        </Link>
+        <p className="pagina-cadastro-rodape">Já tem conta? <Link to="/login">Entrar</Link></p>
       </div>
     </section>
   );

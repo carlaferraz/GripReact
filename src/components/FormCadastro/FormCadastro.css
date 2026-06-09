@@ -110,3 +110,14 @@
   margin-bottom: 24px;
   line-height: 1.65;
 }
+
+.pagina-cadastro-rodape {
+  margin-top: 20px;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.pagina-cadastro-rodape a {
+  color: #6c47ff;
+  font-weight: 500;
+}

@@ -8,11 +8,26 @@ const path = require("path");
 const pool = require("./db");
 
 const app = express();
+const SECRET = process.env.JWT_SECRET || "segredo_jwt";
 
 app.use(cors());
 app.use(express.json());
 
-const SECRET = process.env.JWT_SECRET || "segredo_jwt";
+function authMiddleware(req, res, next) {
+  const authHeader = req.headers.authorization;
+  if (!authHeader) {
+    return res.status(401).json({ erro: "Token ausente." });
+  }
+
+  const token = authHeader.split(" ")[1];
+
+  try {
+    req.usuario = jwt.verify(token, SECRET);
+    next();
+  } catch {
+    res.status(401).json({ erro: "Token inválido." });
+  }
+}
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -43,21 +58,6 @@ const upload = multer({
   fileFilter,
   limits: { fileSize: 5 * 1024 * 1024 },
 });
-
-function authMiddleware(req, res, next) {
-  const authHeader = req.headers.authorization;
-  if (!authHeader) {
-    return res.status(401).json({ erro: "Token ausente." });
-  }
-
-  const token = authHeader.split(" ")[1];
-  try {
-    req.usuario = jwt.verify(token, SECRET);
-    next();
-  } catch {
-    return res.status(401).json({ erro: "Token inválido." });
-  }
-}
 
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
@@ -166,31 +166,31 @@ app.post("/cadastros", async (req, res) => {
   }
 });
 
-app.post(
-  "/upload",
-  authMiddleware,
-  upload.single("imagem"),
-  (req, res) => {
-    if (!req.file) {
-      return res.status(400).json({ erro: "Nenhum arquivo recebido." });
+app.get("/perfil", authMiddleware, async (req, res) => {
+  try {
+    const [rows] = await pool.query(
+      "SELECT email, foto_url FROM usuarios WHERE email = ? LIMIT 1",
+      [req.usuario.email]
+    );
+
+    if (rows.length === 0) {
+      return res.status(404).json({ erro: "Usuário não encontrado." });
     }
 
-    const url = `http://localhost:3001/uploads/${req.file.filename}`;
-    res.json({ url });
+    res.json({
+      email: rows[0].email,
+      foto_url: rows[0].foto_url || null,
+    });
+  } catch (erro) {
+    console.error(erro);
+    res.status(503).json({ erro: "Erro ao buscar perfil." });
   }
-);
-
-app.use((err, req, res, next) => {
-  if (err instanceof multer.MulterError || err.message) {
-    return res.status(400).json({ erro: err.message });
-  }
-  res.status(500).json({ erro: "Erro interno." });
 });
 
-app.post("/contato", async (req, res) => {
+app.post("/contatos", async (req, res) => {
   const { nome, email, assunto, mensagem } = req.body;
 
-  if (!nome || !email || !assunto || !mensagem) {
+  if (!nome?.trim() || !email?.trim() || !assunto?.trim() || !mensagem?.trim()) {
     return res.status(400).json({ erro: "Todos os campos são obrigatórios." });
   }
 
@@ -204,6 +204,41 @@ app.post("/contato", async (req, res) => {
     console.error(erro);
     res.status(503).json({ erro: "Erro ao salvar mensagem." });
   }
+});
+
+app.post(
+  "/upload",
+  authMiddleware,
+  upload.single("imagem"),
+  async (req, res) => {
+    if (!req.file) {
+      return res.status(400).json({ erro: "Nenhum arquivo recebido." });
+    }
+
+    const url = `http://localhost:3001/uploads/${req.file.filename}`;
+
+    try {
+      await pool.query(
+        "INSERT INTO uploads (email, url, filename) VALUES (?, ?, ?)",
+        [req.usuario.email, url, req.file.filename]
+      );
+      await pool.query("UPDATE usuarios SET foto_url = ? WHERE email = ?", [
+        url,
+        req.usuario.email,
+      ]);
+      res.json({ url });
+    } catch (erro) {
+      console.error(erro);
+      res.status(503).json({ erro: "Erro ao salvar upload no banco." });
+    }
+  }
+);
+
+app.use((err, req, res, next) => {
+  if (err instanceof multer.MulterError || err.message) {
+    return res.status(400).json({ erro: err.message });
+  }
+  res.status(500).json({ erro: "Erro interno." });
 });
 
 app.listen(3001, () => {

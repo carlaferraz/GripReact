@@ -1,5 +1,5 @@
 import { useState, useCallback } from "react";
-import { enviarImagem } from "../services/uploadService";
+import { tratarErroAutenticacao } from "../services/authService";
 
 const MAX_SIZE_MB = 5;
 const MAX_SIZE_BYTES = MAX_SIZE_MB * 1024 * 1024;
@@ -33,22 +33,43 @@ export function useImageUpload() {
     setFile(selectedFile);
   }, []);
 
-  const upload = useCallback(async () => {
-    if (!file) return;
+  const upload = useCallback(
+    async (endpoint) => {
+      if (!file) return;
 
-    setUploading(true);
-    setError(null);
+      const formData = new FormData();
+      formData.append("imagem", file);
 
-    try {
-      const data = await enviarImagem(file);
-      setUploadedUrl(data.url);
-      return data.url;
-    } catch (err) {
-      setError(err.message);
-    } finally {
-      setUploading(false);
-    }
-  }, [file]);
+      setUploading(true);
+      setError(null);
+
+      try {
+        const token = localStorage.getItem("token");
+
+        const response = await fetch(endpoint, {
+          method: "POST",
+          headers: {
+            ...(token ? { Authorization: `Bearer ${token}` } : {}),
+          },
+          body: formData,
+        });
+
+        if (!response.ok) {
+          const data = await response.json().catch(() => ({}));
+          tratarErroAutenticacao(response, data, "Erro ao enviar imagem.");
+        }
+
+        const data = await response.json();
+        setUploadedUrl(data.url);
+        return data.url;
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setUploading(false);
+      }
+    },
+    [file]
+  );
 
   const clear = useCallback(() => {
     if (preview) URL.revokeObjectURL(preview);

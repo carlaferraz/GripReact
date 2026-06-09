@@ -11,6 +11,8 @@ import Login from "./pages/Login/Login";
 import PrivateRoute from "./components/PrivateRoute";
 import UsuariosPage from "./pages/Usuarios/UsuariosPage";
 import UploadPage from "./pages/Upload/UploadPage";
+import ComunicadosPage from "./pages/Comunicados/ComunicadosPage";
+import AulasPage from "./pages/Aulas/AulasPage";
 
 
 export default function App() {
@@ -26,6 +28,22 @@ export default function App() {
           <Route path="contato" element={<Contato />} />
           <Route path="cadastro" element={<FormCadastro />} />
           <Route path="login" element={<Login />} />
+          <Route
+            path="comunicados"
+            element={
+              <PrivateRoute>
+                <ComunicadosPage />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="aulas"
+            element={
+              <PrivateRoute>
+                <AulasPage />
+              </PrivateRoute>
+            }
+          />
           <Route
             path="usuarios"
             element={

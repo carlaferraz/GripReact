@@ -1,4 +1,42 @@
-.pagina-upload {
-  min-height: 100vh;
-  padding: 96px 24px 88px;
+.pagina-upload-inner {
+  max-width: 640px;
+}
+
+.upload-foto-atual {
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.upload-foto-label {
+  font-size: 0.9rem;
+  margin-bottom: 12px;
+  color: #4a4761;
+}
+
+.upload-foto-atual img {
+  width: 160px;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid rgba(108, 71, 255, 0.25);
+  margin: 0 auto;
+}
+
+.upload-page-status,
+.upload-page-erro {
+  text-align: center;
+  font-size: 0.95rem;
+  margin-bottom: 16px;
+}
+
+.upload-page-erro {
+  color: #c62828;
+}
+
+.pagina-upload .upload-wrapper {
+  padding-top: 0;
+}
+
+.pagina-upload .upload-title {
+  display: none;
 }
