@@ -1,5 +1,4 @@
-USE gripreact;
-
+-- Database is selected by the connection (DB_NAME); no USE here.
 CREATE TABLE IF NOT EXISTS uploads (
   id INT AUTO_INCREMENT PRIMARY KEY,
   email VARCHAR(255) NOT NULL,

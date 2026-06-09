@@ -45,7 +45,7 @@ RA3: segunda API externa, foto de perfil no MySQL, contato no banco, JWT simples
 
 Públicas: `/`, `/sobre`, `/professores`, `/planos`, `/contato`, `/cadastro`, `/login`
 
-Só logado (`PrivateRoute`): `/comunicados`, `/usuarios`, `/upload`
+Só logado (`PrivateRoute`): `/comunicados`, `/aulas`, `/usuarios`, `/upload`
 
 # Páginas
 
@@ -58,6 +58,7 @@ Só logado (`PrivateRoute`): `/comunicados`, `/usuarios`, `/upload`
 | `Contato/` | `/contato` | Form → MySQL |
 | `Login/` | `/login` | JWT |
 | `Comunicados/` | `/comunicados` | API posts (jsonplaceholder) |
+| `Aulas/` | `/aulas` | API albums (jsonplaceholder) |
 | `Usuarios/` | `/usuarios` | Rede Grip — API users |
 | `Upload/` | `/upload` | Foto de perfil + JWT |
 
