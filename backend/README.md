@@ -1,8 +1,8 @@
 # Backend GripReact
 
-API Express na porta 3001. MySQL + JWT + upload.
+Express na porta 3001. MySQL, JWT, upload.
 
-# Configurar (primeira vez)
+# Setup
 
 ```bash
 cp .env.example .env
@@ -11,7 +11,11 @@ npm run db:setup
 npm run seed
 ```
 
-O `.env` precisa da senha do MySQL. O `db:setup` cria o banco `gripreact` e as tabelas (`schema.sql`). O `seed` insere o admin de teste.
+Banco já do RA2:
+
+```bash
+npm run db:migrate
+```
 
 # Rodar
 
@@ -21,13 +25,24 @@ npm start
 
 # Rotas
 
-- `POST /login` — body: `{ email, senha }` → devolve `{ token }`
-- `POST /cadastros` — dados do formulário + senha (grava em `cadastros` e `usuarios`)
-- `POST /upload` — precisa header `Authorization: Bearer <token>`, campo do arquivo: `imagem`
-
-Arquivos vão pra pasta `uploads/` e a URL volta tipo `http://localhost:3001/uploads/...`
+| Método | Rota | Auth | Descrição |
+|--------|------|------|-----------|
+| POST | `/login` | | retorna `{ token }` |
+| POST | `/cadastros` | | |
+| POST | `/contatos` | | |
+| GET | `/perfil` | Bearer | |
+| POST | `/upload` | Bearer | salva em `uploads` + `foto_url` |
 
 # Tabelas
 
-- `usuarios` — login (senha com bcrypt)
-- `cadastros` — o que vem do form da Grip
+- `usuarios` — login + `foto_url`
+- `uploads` — histórico de fotos enviadas
+- `cadastros` — formulário Grip
+- `contatos` — mensagens do site
+
+# Scripts
+
+- `npm run db:setup` — banco novo
+- `npm run db:migrate` — RA3 em banco existente
+- `npm run seed` — usuário de teste
+- `npm start` — API
