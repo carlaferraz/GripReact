@@ -1,5 +1,4 @@
-USE gripreact;
-
+-- Database is selected by the connection (DB_NAME); no USE here.
 CREATE TABLE IF NOT EXISTS refresh_tokens (
   id INT AUTO_INCREMENT PRIMARY KEY,
   token_hash VARCHAR(64) NOT NULL UNIQUE,
