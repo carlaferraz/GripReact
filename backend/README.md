@@ -25,12 +25,12 @@ npm start
 
 # Rotas
 
-| Método | Rota | Auth |
-|--------|------|------|
+| Método | Rota | Auth | Descrição |
+|--------|------|------|-----------|
 | POST | `/login` | | retorna `{ token }` |
-| POST | `/cadastros` | |
-| POST | `/contatos` | |
-| GET | `/perfil` | Bearer |
+| POST | `/cadastros` | | |
+| POST | `/contatos` | | |
+| GET | `/perfil` | Bearer | |
 | POST | `/upload` | Bearer | salva em `uploads` + `foto_url` |
 
 # Tabelas
