@@ -2,8 +2,6 @@ import { useRef, useState } from "react";
 import { useImageUpload } from "../../hooks/useImageUpload";
 import "./ImageUpload.css";
 
-const UPLOAD_ENDPOINT = "http://localhost:3001/upload";
-
 export default function ImageUpload({ onSuccess }) {
   const { preview, error, uploading, uploadedUrl, handleFile, upload, clear } =
     useImageUpload();
@@ -32,7 +30,7 @@ export default function ImageUpload({ onSuccess }) {
   }
 
   async function handleUpload() {
-    const url = await upload(UPLOAD_ENDPOINT);
+    const url = await upload();
     if (url && onSuccess) {
       onSuccess(url);
     }
