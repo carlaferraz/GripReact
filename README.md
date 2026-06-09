@@ -58,6 +58,7 @@ Só logado (`PrivateRoute`): `/comunicados`, `/aulas`, `/usuarios`, `/upload`
 | `Contato/` | `/contato` | Form → MySQL |
 | `Login/` | `/login` | JWT |
 | `Comunicados/` | `/comunicados` | API posts (jsonplaceholder) |
+| `Aulas/` | `/aulas` | API albums (jsonplaceholder) |
 | `Usuarios/` | `/usuarios` | Rede Grip — API users |
 | `Upload/` | `/upload` | Foto de perfil + JWT |
 
