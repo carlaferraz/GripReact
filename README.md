@@ -1,88 +1,152 @@
 # GripReact
 
-SPA em React + Vite com React Router — TDE da escola Grip (ballet clássico).
+Site da escola Grip (ballet clássico), feito em React + Vite para a disciplina **Programação para Web 4** (PUCPR BSI).
 
-# Rodar o projeto
+Repositório: [github.com/carlaferraz/GripReact](https://github.com/carlaferraz/GripReact)
 
-Precisa do MySQL rodando. No backend:
+O projeto evoluiu em três entregas: estrutura e rotas (RA1), formulários e consumo de API (RA2), e persistência com JWT e upload (RA3).
+
+---
+
+## Como rodar
+
+Você precisa do **MySQL** ligado e do **Node** instalado.
+
+### Backend
 
 ```bash
 cd backend
 cp .env.example .env
-# coloca a senha do MySQL no .env
+```
+
+Edite o `.env` com a senha do seu MySQL, depois:
+
+```bash
 npm install
 npm run db:setup
 npm run seed
 npm start
 ```
 
-Se o banco já existia do RA2:
+Se o banco já existia de uma entrega anterior:
 
 ```bash
 npm run db:migrate
+npm run seed
 ```
 
-O seed cria usuário de teste: `admin@email.com` / `123456`. Quem se cadastra usa o próprio e-mail e senha.
+A API sobe em `http://localhost:3001`.
 
-No front (outro terminal, na raiz):
+Usuário de teste criado pelo seed: `admin@email.com` / `123456`. Quem se cadastra no site usa o próprio e-mail e senha.
+
+### Frontend
+
+Em outro terminal, na raiz do projeto:
 
 ```bash
 npm install
 npm run dev
 ```
 
-Backend: `http://localhost:3001` — Front: `http://localhost:5173`
+O site abre em `http://localhost:5173`.
 
-Mais detalhe da API em `backend/README.md`.
+Detalhes da API em [`backend/README.md`](backend/README.md).
 
-# Arquitetura
+---
 
-O React sobe em `src/main.jsx`, rotas em `src/App.jsx`, layout com navbar e footer. Lógica de rede nos `services`.
+## O que o projeto faz
 
-RA3: segunda API externa, foto de perfil no MySQL, contato no banco, JWT simples (padrão da aula).
+SPA com layout fixo (navbar + footer), páginas públicas de apresentação da escola e uma área restrita para quem está logado.
 
-# Rotas
+**Persistência no MySQL:** cadastro de alunos, mensagens de contato, login com senha criptografada (bcrypt) e foto de perfil.
 
-Públicas: `/`, `/sobre`, `/professores`, `/planos`, `/contato`, `/cadastro`, `/login`
+**Autenticação JWT:** login retorna um token salvo no `localStorage`. Rotas protegidas checam o token; requisições ao backend enviam `Authorization: Bearer`. Se o token expirar, o usuário é deslogado.
 
-Só logado (`PrivateRoute`): `/comunicados`, `/aulas`, `/usuarios`, `/upload`
+**Upload de imagem:** preview antes de enviar, validação de tipo e tamanho (máx. 5 MB), arquivo salvo no servidor e URL gravada no banco.
 
-# Páginas
+**APIs externas** (JSONPlaceholder), acessíveis só logado:
+- `/users` — Rede Grip
+- `/posts` — Comunicados
+- `/albums` — Aulas (trilhas/módulos)
 
-| Pasta | Rota | Conteúdo |
-|--------|------|----------|
-| `Home/` | `/` | Landing |
-| `Sobre/` | `/sobre` | Institucional |
-| `Professores/` | `/professores` | Equipe |
-| `Planos/` | `/planos` | Planos |
-| `Contato/` | `/contato` | Form → MySQL |
-| `Login/` | `/login` | JWT |
-| `Comunicados/` | `/comunicados` | API posts (jsonplaceholder) |
-| `Aulas/` | `/aulas` | API albums (jsonplaceholder) |
-| `Usuarios/` | `/usuarios` | Rede Grip — API users |
-| `Upload/` | `/upload` | Foto de perfil + JWT |
+---
 
-Cadastro: `FormCadastro` em `/cadastro`.
+## Arquitetura
 
-# Services
+```
+src/
+├── main.jsx          → entrada do React
+├── App.jsx           → rotas
+├── components/       → Layout, Navbar, Footer, FormCadastro, ImageUpload, PrivateRoute...
+├── pages/            → uma pasta por tela
+├── services/         → chamadas HTTP (fetch)
+├── hooks/            → useImageUpload
+└── utils/            → validação de formulários
 
-- `cadastroService` — POST `/cadastros`
-- `contatoService` — POST `/contatos`
-- `comunicadosService` — jsonplaceholder `/posts`
-- `usuariosService` — jsonplaceholder `/users`
-- `authService` — login, logout, `localStorage` token
-- `perfilService` — GET `/perfil`
-- `uploadService` — POST `/upload` com Bearer
+backend/
+├── server.js         → Express (login, cadastro, contato, perfil, upload)
+├── db.js             → pool MySQL
+└── schema.sql        → tabelas
+```
 
-# Vídeo / apresentação (10 e 17/06)
+A lógica de rede fica nos **services**, não nas páginas. Formulários validam no client (`validacaoFormulario.js`) e o backend valida de novo antes de gravar.
 
-1. Cadastro com senha
-2. Login
-3. Comunicados e Rede Grip (APIs externas)
-4. Upload da foto de perfil (persiste no MySQL)
-5. Contato (salva no banco)
-6. Sair
+---
 
-# Entrega
+## Rotas
 
-Repositório atualizado, vídeo percorrendo todas as rotas, README com esta arquitetura.
+| Rota | Acesso | Descrição |
+|------|--------|-----------|
+| `/` | público | Home |
+| `/sobre` | público | Sobre a escola |
+| `/professores` | público | Equipe |
+| `/planos` | público | Planos |
+| `/contato` | público | Formulário → MySQL |
+| `/cadastro` | público | Cadastro com senha → MySQL |
+| `/login` | público | Login JWT |
+| `/comunicados` | logado | Posts (API externa) |
+| `/aulas` | logado | Trilhas de aula (API externa) |
+| `/usuarios` | logado | Rede Grip (API externa) |
+| `/upload` | logado | Foto de perfil |
+
+Rotas logadas usam `PrivateRoute`, que redireciona para `/login` se não houver token.
+
+---
+
+## Services
+
+| Arquivo | O que faz |
+|---------|-----------|
+| `authService` | login, logout, verificação de sessão |
+| `cadastroService` | POST `/cadastros` |
+| `contatoService` | POST `/contatos` |
+| `perfilService` | GET `/perfil` (Bearer) |
+| `uploadService` | POST `/upload` (Bearer) |
+| `comunicadosService` | GET jsonplaceholder `/posts` |
+| `aulasService` | GET jsonplaceholder `/albums` |
+| `usuariosService` | GET jsonplaceholder `/users` |
+
+---
+
+## Roteiro do vídeo de apresentação
+
+1. Navegar pelas páginas públicas (Home, Professores, Planos, Sobre, Contato)
+2. Cadastrar um aluno com senha
+3. Fazer login
+4. Abrir Comunicados, Aulas e Usuários (APIs externas)
+5. Enviar foto de perfil no Upload (persiste no MySQL)
+6. Enviar mensagem no Contato (persiste no MySQL)
+7. Sair
+
+---
+
+## Entrega RA3
+
+- [x] Ambiente React com componentes reutilizáveis e rotas
+- [x] Formulários com validação e camada de services
+- [x] Consumo de APIs (backend próprio + JSONPlaceholder)
+- [x] Autenticação JWT com rotas protegidas
+- [x] Persistência de dados no MySQL
+- [x] Upload de foto de perfil com preview
+- [x] Segunda API externa integrada (Aulas)
+- [x] README com arquitetura e instruções de execução
