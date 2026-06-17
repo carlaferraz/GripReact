@@ -46,6 +46,14 @@ export function validarMensagemContatoOuErro(mensagem) {
   return null;
 }
 
+export function validarFofuriceContatoOuErro(fofurice) {
+  const s = (fofurice ?? "").trim();
+  if (!s) return "Fofurice é obrigatória";
+  if (!RE_TEXTO_LONGO_MIN15.test(s))
+    return "Fofurice deve ter pelo menos 15 caracteres";
+  return null;
+}
+
 export function validarGeneroOuErro(genero) {
   const s = String(genero ?? "").trim();
   if (!s) return "Selecione o gênero";

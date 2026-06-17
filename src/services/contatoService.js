@@ -3,6 +3,7 @@ import {
   validarEmailOuErro,
   validarAssuntoOuErro,
   validarMensagemContatoOuErro,
+  validarFofuriceContatoOuErro,
 } from "../utils/validacaoFormulario";
 
 const CONTATOS_ENDPOINT = "http://localhost:3001/contatos";
@@ -31,6 +32,7 @@ function validar(dados) {
     validarEmailOuErro(dados.email),
     validarAssuntoOuErro(dados.assunto),
     validarMensagemContatoOuErro(dados.mensagem),
+    validarFofuriceContatoOuErro(dados.fofurice),
   ].filter(Boolean);
 
   if (erros.length > 0) throw new Error(erros.join(", "));

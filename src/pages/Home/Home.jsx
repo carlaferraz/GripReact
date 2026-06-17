@@ -3,6 +3,7 @@ import Hero from './hero/Hero'
 import CTA from '../../components/CTA/CTA'
 import Card from '../Professores/Card/Card'
 import './Home.css'
+import Botao from '../../components/botao/botao'
 
 const professores = [
   { name: "Lisiane", cargo: "Ballet clássico", desc: "Especialista em trabalho de pontas e técnica feminina clássica", nota: "5.0", bg: "linear-gradient(160deg, #e8e0ff 0%, #d4c8ff 100%)" },
@@ -159,7 +160,7 @@ function Home() {
           />
         </div>
       </section>
-
+      <Botao />
       <CTA />
     </>
   )

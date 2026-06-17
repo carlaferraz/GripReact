@@ -37,8 +37,10 @@ function Navbar() {
           <Link to="/professores">Professores</Link>
           <Link to="/planos">Planos</Link>
           <Link to="/sobre">Sobre</Link>
+          <Link to="/blog">Blog</Link>
           <Link to="/contato">Contato</Link>
           {logado ? (
+            <Link to="/upload">Upload</Link>
             <>
               <Link to="/comunicados">Comunicados</Link>
               <Link to="/aulas">Aulas</Link>
