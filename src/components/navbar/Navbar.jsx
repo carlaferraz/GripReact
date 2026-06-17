@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
+import { estaLogado, fazerLogout } from "../../services/authService";
 import "./Navbar.css";
 import gripLogo from "../../assets/grip-logo.svg";
 
@@ -10,8 +11,7 @@ function Navbar() {
   const [menuAberto, setMenuAberto] = useState(false);
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    setLogado(Boolean(token && token !== "undefined"));
+    setLogado(estaLogado());
   }, [location]);
 
   useEffect(() => {
@@ -19,7 +19,7 @@ function Navbar() {
   }, [location]);
 
   function handleLogout() {
-    localStorage.removeItem("token");
+    fazerLogout();
     setLogado(false);
     navigate("/login");
   }
@@ -41,6 +41,12 @@ function Navbar() {
           <Link to="/contato">Contato</Link>
           {logado ? (
             <Link to="/upload">Upload</Link>
+            <>
+              <Link to="/comunicados">Comunicados</Link>
+              <Link to="/aulas">Aulas</Link>
+              <Link to="/usuarios">Usuários</Link>
+              <Link to="/upload">Upload</Link>
+            </>
           ) : null}
         </nav>
       </div>

@@ -1,49 +1,58 @@
 import { useEffect, useState } from "react";
+import { buscarUsuariosRede } from "../../services/usuariosService";
+import "../Professores/Professores.css";
 import "./Usuarios.css";
 
 export default function UsuariosPage() {
   const [usuarios, setUsuarios] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [erro, setErro] = useState("");
 
   useEffect(() => {
-    async function buscarUsuarios() {
+    async function carregar() {
       try {
-        const resposta = await fetch(
-          "https://jsonplaceholder.typicode.com/users"
-        );
-        const dados = await resposta.json();
+        const dados = await buscarUsuariosRede();
         setUsuarios(dados);
-      } catch (erro) {
-        console.log("Erro ao buscar usuários", erro);
+      } catch (err) {
+        setErro(err.message);
       } finally {
         setLoading(false);
       }
     }
 
-    buscarUsuarios();
+    carregar();
   }, []);
 
   return (
-    <section className="pagina-usuarios">
-      <div className="pagina-usuarios-inner">
-        <h2>Usuários (API)</h2>
-        <p className="pagina-usuarios-lead">
-          Lista consumida da API de jsonplaceholder: rota protegida no front com JWT.
-        </p>
+    <section className="page-lista usuarios-page">
+      <div className="page-lista-inner">
+        <header className="page-lista-header">
+          <span className="page-eyebrow">Área do aluno</span>
+          <h1>Rede Grip</h1>
+          <p>
+            Contatos da comunidade Grip em outras unidades. Lista vinda de API
+            externa (users).
+          </p>
+        </header>
 
-        {loading ? (
-          <p>Carregando...</p>
-        ) : (
-          <div className="usuarios-lista">
+        {loading ? <p className="usuarios-status">Carregando...</p> : null}
+        {erro ? <p className="usuarios-erro">{erro}</p> : null}
+
+        {!loading && !erro && usuarios.length === 0 ? (
+          <p className="usuarios-status">Nenhum usuário encontrado.</p>
+        ) : null}
+
+        {!loading && !erro && usuarios.length > 0 ? (
+          <div className="usuarios-grid">
             {usuarios.map((user) => (
               <article key={user.id} className="usuario-card">
                 <h3>{user.name}</h3>
-                <p>Email: {user.email}</p>
-                <p>Cidade: {user.address.city}</p>
+                <p>{user.email}</p>
+                <p>{user.address.city}</p>
               </article>
             ))}
           </div>
-        )}
+        ) : null}
       </div>
     </section>
   );

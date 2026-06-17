@@ -1,3 +1,5 @@
+import { tratarErroAutenticacao } from "./authService";
+
 const UPLOAD_ENDPOINT = "http://localhost:3001/upload";
 
 export async function enviarImagem(file) {
@@ -14,7 +16,7 @@ export async function enviarImagem(file) {
 
   if (!response.ok) {
     const data = await response.json().catch(() => ({}));
-    throw new Error(data.erro || "Erro ao enviar imagem.");
+    tratarErroAutenticacao(response, data, "Erro ao enviar imagem.");
   }
 
   return response.json();

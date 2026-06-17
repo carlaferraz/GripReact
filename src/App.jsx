@@ -12,6 +12,8 @@ import PrivateRoute from "./components/PrivateRoute";
 import UsuariosPage from "./pages/Usuarios/UsuariosPage";
 import UploadPage from "./pages/Upload/UploadPage";
 import Blog from './pages/Blog/blog'
+import ComunicadosPage from "./pages/Comunicados/ComunicadosPage";
+import AulasPage from "./pages/Aulas/AulasPage";
 
 
 export default function App() {
@@ -28,6 +30,22 @@ export default function App() {
           <Route path="cadastro" element={<FormCadastro />} />
           <Route path="login" element={<Login />} />
           <Route path="blog" element={<Blog />} />
+          <Route
+            path="comunicados"
+            element={
+              <PrivateRoute>
+                <ComunicadosPage />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="aulas"
+            element={
+              <PrivateRoute>
+                <AulasPage />
+              </PrivateRoute>
+            }
+          />
           <Route
             path="usuarios"
             element={

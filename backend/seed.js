@@ -16,11 +16,10 @@ async function seed() {
       [ADMIN_EMAIL, senhaHash]
     );
 
-    console.log(`Usuário admin criado/atualizado: ${ADMIN_EMAIL} / ${ADMIN_SENHA}`);
+    console.log(`Usuário de teste: ${ADMIN_EMAIL} / ${ADMIN_SENHA}`);
     process.exit(0);
   } catch (erro) {
     console.error("Erro no seed:", erro.message);
-    console.error("Verifique se o MySQL está rodando e se rodou: mysql < schema.sql");
     process.exit(1);
   }
 }
