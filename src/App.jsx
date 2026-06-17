@@ -11,6 +11,7 @@ import Login from "./pages/Login/Login";
 import PrivateRoute from "./components/PrivateRoute";
 import UsuariosPage from "./pages/Usuarios/UsuariosPage";
 import UploadPage from "./pages/Upload/UploadPage";
+import Blog from './pages/Blog/blog'
 
 
 export default function App() {
@@ -26,6 +27,7 @@ export default function App() {
           <Route path="contato" element={<Contato />} />
           <Route path="cadastro" element={<FormCadastro />} />
           <Route path="login" element={<Login />} />
+          <Route path="blog" element={<Blog />} />
           <Route
             path="usuarios"
             element={

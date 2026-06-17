@@ -188,16 +188,16 @@ app.use((err, req, res, next) => {
 });
 
 app.post("/contato", async (req, res) => {
-  const { nome, email, assunto, mensagem } = req.body;
+  const { nome, email, assunto, mensagem, fofurice } = req.body;
 
-  if (!nome || !email || !assunto || !mensagem) {
+  if (!nome || !email || !assunto || !mensagem || !fofurice) {
     return res.status(400).json({ erro: "Todos os campos são obrigatórios." });
   }
 
   try {
     await pool.query(
-      "INSERT INTO contatos (nome, email, assunto, mensagem) VALUES (?, ?, ?, ?)",
-      [nome.trim(), email.trim(), assunto.trim(), mensagem.trim()]
+      "INSERT INTO contatos (nome, email, assunto, mensagem, fofurice) VALUES (?, ?, ?, ?, ?)",
+      [nome.trim(), email.trim(), assunto.trim(), mensagem.trim(), fofurice.trim()]
     );
     res.status(201).json({ sucesso: true });
   } catch (erro) {
