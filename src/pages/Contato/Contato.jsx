@@ -3,6 +3,7 @@ import "./Contato.css";
 import { MapPin, Phone, Mail } from "lucide-react";
 import { enviarMensagemContato } from "../../services/contatoService";
 
+// exercício 4: campos de input validados com contatoService
 function Contato() {
   const [formData, setFormData] = useState({
     nome: "",

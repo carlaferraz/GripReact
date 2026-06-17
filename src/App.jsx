@@ -29,7 +29,9 @@ export default function App() {
           <Route path="contato" element={<Contato />} />
           <Route path="cadastro" element={<FormCadastro />} />
           <Route path="login" element={<Login />} />
+          {/* exercício 1: nova rota */}
           <Route path="blog" element={<Blog />} />
+          {/* exercício 1: novas rotas protegidas */}
           <Route
             path="comunicados"
             element={

@@ -1,3 +1,4 @@
+// exercício 6: componente com prop e aviso se prop não for enviada
 import PropTypes from "prop-types";
 
 function Saudacao({ nome }) {

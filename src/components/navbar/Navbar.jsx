@@ -37,10 +37,10 @@ function Navbar() {
           <Link to="/professores">Professores</Link>
           <Link to="/planos">Planos</Link>
           <Link to="/sobre">Sobre</Link>
+          {/* exercício 3: novo link no menu */}
           <Link to="/blog">Blog</Link>
           <Link to="/contato">Contato</Link>
           {logado ? (
-            <Link to="/upload">Upload</Link>
             <>
               <Link to="/comunicados">Comunicados</Link>
               <Link to="/aulas">Aulas</Link>
